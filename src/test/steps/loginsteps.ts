@@ -10,13 +10,6 @@ Given('user launch url',{timeout: 30000}, async function () {
     page = await browser.newPage();
     
     await page.goto("https://www.flipkart.com/");
-
-    
-    // await page.setViewportSize({
-    //      width: 1640,
-    //      height: 597,
-    //    });
-
     
   });
 
