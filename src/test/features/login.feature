@@ -1,6 +1,13 @@
-Feature: User Authentication Test
+Feature: User Automation Page validation
 
-Scenario: Login valid User
+Background:
 Given user launch url
-When search for product name
-Then user validate dashboard
+
+
+Scenario: Validate the about page
+When select about page
+Then user validate about page
+
+Scenario: Search Product From search list
+When select contact page
+Then user validate contact page

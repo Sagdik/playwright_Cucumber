@@ -10,10 +10,17 @@
         
         "dryRun":false,
         "require":[
+            "src/test/hooks/*.ts",
             "src/test/steps/*.ts"
         ],
         "requireModule":[
             "ts-node/register"
+        ],
+        "format":[
+            "progress-bar",
+            "html:cucumber-report.html"
+
         ]
+        
     }
 }

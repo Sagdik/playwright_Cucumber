@@ -1,30 +1,54 @@
-import { Given,When,Then } from "@cucumber/cucumber";
-import { chromium, Page, Browser } from "@playwright/test";
+import {  Browser, expect } from "@playwright/test";
+import { Given, When, Then, setDefaultTimeout } from "@cucumber/cucumber";
+import { fixture } from "../hooks/pageFixture";
 
-let browser:Browser;
-let page: Page;
 
-Given('user launch url',{timeout: 30000}, async function () {
-    // Write code here that turns the phrase above into concrete actions
-    browser = await chromium.launch({ headless:false});
-    page = await browser.newPage();
+setDefaultTimeout(60 * 1000 * 2)
+let browser: Browser;
+
+
+Given('user launch url',{timeout: 300000}, async function () {
     
-    await page.goto("https://www.flipkart.com/");
-    
-  });
 
-  When('search for product name',{timeout: 30000}, async function () {
-    // Write code here that turns the phrawait page.waitForTimeout(20000);
+  await fixture.page.goto("https://automationpanda.com/");
 
-    await page.locator("button[class ='_2KpZ6l _2doB4z']").click();
-    await page.locator("img[alt='Mobiles']").click();
+  await fixture.page.waitForTimeout(5000);
+
+ 
+
     
   });
 
+  When('select about page',{timeout: 30000}, async function () {
+    // Write code here that turns the phrawait fixture.page.waitForTimeout(20000);
 
-  Then('user validate dashboard', async function () {
+    await fixture.page.locator('[href="https://automationpanda.com/about/"]').click();
+
+
+
+  });
+
+  When('select contact page',{timeout: 30000}, async function () {
+    // Write code here that turns the phrawait fixture.page.waitForTimeout(20000);
+  await fixture.page.locator('[id="menu-item-10"]').click();
+
+  
+  });
+
+  Then('user validate contact page', async function () {
+
+    const ele = await fixture.page.locator('[class="entry-title"]').textContent();
+    expect(ele).toMatch('Contact');
     
-    // Write code here that turns the phrase above into concrete actions
-    await browser.close();
+  });
 
+
+  Then('user validate about page', async function () {
+    
+    
+    const buttonValue = await fixture.page.locator('[class="entry-title"]').textContent();
+
+    expect(buttonValue).toMatch('About');
+
+    console.log(buttonValue);
   });
