@@ -20,7 +20,8 @@
             "progress-bar",
             "html:cucumber-report.html"
 
-        ]
+        ],
+        "parallel":2 
         
     }
 }
